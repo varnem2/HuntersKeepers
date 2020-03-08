@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :fates
   root 'hunters#index'
   resources :gears
   devise_for :users

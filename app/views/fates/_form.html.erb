@@ -1,0 +1,19 @@
+<%= form_with(model: fate, local: true) do |form| %>
+  <%= render 'layouts/errors', errors: fate.errors %>
+
+  <div class="field">
+    <%= form.label :hunter_id %>
+    <%= hunter_select(form) %>
+  </div>
+
+  <div class="field">
+    <b-taginput
+      maxtags="1"
+      name="fate[found_out_list]">
+    </b-taginput>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: 'button' %>
+  </div>
+<% end %>
