@@ -2,8 +2,13 @@
 
 <p>
   <strong>Hunter:</strong>
-  <%= @fate.hunter_id %>
+  <%= @fate.hunter.name %>
 </p>
 
-<%= link_to 'Edit', edit_fate_path(@fate) %> |
-<%= link_to 'Back', fates_path %>
+<p>
+  <strong>Found Out:</strong>
+  <%= @fate.found_out_list %>
+</p>
+
+<%= link_to 'Edit', edit_fate_path(@fate), class: 'button is-primary' %>
+<%= link_to 'Back', fates_path, class: 'button' %>

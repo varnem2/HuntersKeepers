@@ -2,18 +2,27 @@
   <%= render 'layouts/errors', errors: fate.errors %>
 
   <div class="field">
-    <%= form.label :hunter_id %>
-    <%= hunter_select(form) %>
+    <%= form.label :hunter_id, class: 'label' %>
+    <div class="control">
+      <%= hunter_select(form) %>
+    </div>
   </div>
 
-  <div class="field">
+  <%# <div class="field">
     <b-taginput
       maxtags="1"
       name="fate[found_out_list]">
     </b-taginput>
+  </div> %>
+
+  <div class="field">
+    <%= form.label :found_out, class: 'label' %>
+    <div class="control">
+      <%= tag_select(form: form, field: :found_out_list) %>
+    </div>
   </div>
 
   <div class="actions">
-    <%= form.submit class: 'button' %>
+    <%= form.submit class: 'button is-primary' %>
   </div>
 <% end %>

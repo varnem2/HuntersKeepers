@@ -1,27 +1,31 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Fates</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Hunter</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @fates.each do |fate| %>
+<h4 class="title is-4">Fates</h4>
+<p class="subtitle is-6">
+  Chosen hunters can decide what fate is in store for them.
+</p>
+<div class="container">
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= fate.hunter_id %></td>
-        <td><%= link_to 'Show', fate %></td>
-        <td><%= link_to 'Edit', edit_fate_path(fate) %></td>
-        <td><%= link_to 'Destroy', fate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Hunter</th>
+        <th>Found Out</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @fates.each do |fate| %>
+        <tr>
+          <td><%= hunter_link(fate.hunter) %></td>
+          <td><%= fate.found_out_list %></td>
+          <td><%= fate_buttons(fate) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <br>
 
-<%= link_to 'New Fate', new_fate_path %>
+<%= link_to 'New Fate', new_fate_path, class: 'button is-primary' %>
