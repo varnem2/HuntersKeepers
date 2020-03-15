@@ -37,3 +37,9 @@ yarn-debug.log*
 # Ignore Compiled yardoc
 /.yardoc
 /doc
+
+# Ignore stored test run
+spec/examples.txt
+
+# Ignore VSCode settings
+.vscode/settings.json
