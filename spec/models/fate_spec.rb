@@ -10,4 +10,24 @@ RSpec.describe Fate, type: :model do
       expect(fate).to be_valid
     end
   end
+
+  describe 'validations' do
+    context 'with one found_out tag from the list' do
+      let(:fate) { build :fate, found_out_list: ['Nightmares and visions'] }
+
+      it { expect(fate).to be_valid }
+    end
+
+    context 'with a found_out tag not from the list' do
+      let(:fate) { build :fate, found_out_list: ['Elephant delivery'] }
+
+      it { expect(fate).not_to be_valid }
+    end
+
+    context 'when hunter found out two different ways' do
+      let(:fate) { build :fate, found_out_list: ['Nightmares and visions', 'Some weirdo told you'] }
+
+      it { expect(fate).not_to be_valid }
+    end
+  end
 end
