@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_26_160952) do
+ActiveRecord::Schema.define(version: 2020_05_26_205042) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,10 +20,8 @@ ActiveRecord::Schema.define(version: 2020_05_26_160952) do
     t.string "description"
     t.integer "harm"
     t.integer "armor"
-    t.bigint "playbook_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["playbook_id"], name: "index_gears_on_playbook_id"
   end
 
   create_table "hunters", force: :cascade do |t|
@@ -101,20 +99,12 @@ ActiveRecord::Schema.define(version: 2020_05_26_160952) do
     t.index ["playbook_id"], name: "index_playbook_gears_on_playbook_id"
   end
 
-  create_table "playbookgears", force: :cascade do |t|
-    t.bigint "gear_id", null: false
-    t.bigint "playbook_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["gear_id"], name: "index_playbookgears_on_gear_id"
-    t.index ["playbook_id"], name: "index_playbookgears_on_playbook_id"
-  end
-
   create_table "playbooks", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "available_gear", array: true
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -169,7 +159,6 @@ ActiveRecord::Schema.define(version: 2020_05_26_160952) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "gears", "playbooks"
   add_foreign_key "hunters", "playbooks"
   add_foreign_key "hunters", "users"
   add_foreign_key "hunters_gears", "gears"
@@ -180,8 +169,6 @@ ActiveRecord::Schema.define(version: 2020_05_26_160952) do
   add_foreign_key "moves", "playbooks"
   add_foreign_key "playbook_gears", "gears"
   add_foreign_key "playbook_gears", "playbooks"
-  add_foreign_key "playbookgears", "gears"
-  add_foreign_key "playbookgears", "playbooks"
   add_foreign_key "ratings", "playbooks"
   add_foreign_key "taggings", "tags"
 end

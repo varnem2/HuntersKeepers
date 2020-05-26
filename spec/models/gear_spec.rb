@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: gears
@@ -7,12 +9,17 @@
 #  description :string
 #  harm        :integer
 #  armor       :integer
-#  playbook_id :bigint
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
 require 'rails_helper'
 
 RSpec.describe Gear, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:gear) { create :gear }
+  let(:playbook) { create :playbook, available_gear: [gear.id, 2] }
+
+  it 'can determine which playbooks the gear belongs to' do
+    binding.pry
+    expect(gear.playbooks).to include(playbook.id)
+  end
 end
