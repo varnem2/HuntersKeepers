@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_09_183512) do
+ActiveRecord::Schema.define(version: 2020_05_26_160952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,24 @@ ActiveRecord::Schema.define(version: 2020_02_09_183512) do
     t.index ["playbook_id"], name: "index_moves_on_playbook_id"
   end
 
+  create_table "playbook_gears", force: :cascade do |t|
+    t.bigint "playbook_id", null: false
+    t.bigint "gear_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["gear_id"], name: "index_playbook_gears_on_gear_id"
+    t.index ["playbook_id"], name: "index_playbook_gears_on_playbook_id"
+  end
+
+  create_table "playbookgears", force: :cascade do |t|
+    t.bigint "gear_id", null: false
+    t.bigint "playbook_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["gear_id"], name: "index_playbookgears_on_gear_id"
+    t.index ["playbook_id"], name: "index_playbookgears_on_playbook_id"
+  end
+
   create_table "playbooks", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -160,6 +178,10 @@ ActiveRecord::Schema.define(version: 2020_02_09_183512) do
   add_foreign_key "hunters_moves", "moves"
   add_foreign_key "improvements", "playbooks"
   add_foreign_key "moves", "playbooks"
+  add_foreign_key "playbook_gears", "gears"
+  add_foreign_key "playbook_gears", "playbooks"
+  add_foreign_key "playbookgears", "gears"
+  add_foreign_key "playbookgears", "playbooks"
   add_foreign_key "ratings", "playbooks"
   add_foreign_key "taggings", "tags"
 end
