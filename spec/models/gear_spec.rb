@@ -16,10 +16,9 @@ require 'rails_helper'
 
 RSpec.describe Gear, type: :model do
   let(:gear) { create :gear }
-  let(:playbook) { create :playbook, available_gear: [gear.id, 2] }
+  let(:playbook) { create :playbook, gears: [gear] }
 
   it 'can determine which playbooks the gear belongs to' do
-    binding.pry
-    expect(gear.playbooks).to include(playbook.id)
+    expect(gear.playbooks).to include(playbook)
   end
 end

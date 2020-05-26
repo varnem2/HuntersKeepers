@@ -112,12 +112,10 @@ I’ll kill them all. That’s all I have left.'
    description: 'There’s still so much to be discovered and
   explained, even now. Perhaps only one event in a thousand is
   true weirdness — but I’ll investigate them all to find it.',
-   available_gear: [1, 16, 14]
+   gears: [1, 16, 14]
  }].each do |playbook|
+  playbook[:gears] = playbook[:gears].map { |id| Gear.find(id) }
   Playbook.find_or_create_by(name: playbook[:name]).update!(playbook)
-  playbook[:gear].each do |gear_id|
-    PlaybookGear.create(gear_id: gear_id, playbook_id: playbook[:id])
-  end
 end
 
 # used by other seedfiles to associate data with playbooks

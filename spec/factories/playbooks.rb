@@ -4,6 +4,6 @@ FactoryBot.define do
   factory :playbook do
     name { 'The Unspecified' }
     description { 'A mysterious wonderer' }
-    available_gear { [] }
+    gears { [FactoryBot.create(:gear)] }
   end
 end
