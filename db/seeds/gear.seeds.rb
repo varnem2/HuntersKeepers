@@ -1,103 +1,89 @@
 # frozen_string_literal: true
 
-after :playbook do
-  ######
-  # Initiate
-  ######
-  # initiate = Playbook.find_by name: 'The Initiate'
-  [{
-    playbook_id: @initiate.id,
-    name: 'Old-fashioned armor',
-    armor: 1,
-    tag_list: 'heavy, old-fashioned'
-  },
-   {
-     playbook_id: @initiate.id,
-     name: 'Sword',
-     harm: 2,
-     tag_list: 'hand, messy, old-fashioned'
-   },
-   {
-     playbook_id: @initiate.id,
-     name: 'Axe',
-     harm: 2,
-     tag_list: 'hand, messy, old-fashioned'
-   },
-   {
-     playbook_id: @initiate.id,
-     name: 'Big sword',
-     harm: 3,
-     tag_list: 'hand, messy, heavy, old-fashioned'
-   },
-   {
-     playbook_id: @initiate.id,
-     name: 'Big axe',
-     harm: 3,
-     tag_list: 'hand, messy, slow, heavy, old-fashioned'
-   },
-   {
-     playbook_id: @initiate.id,
-     name: 'Silver knife',
-     harm: 1,
-     tag_list: 'hand, silver, old-fashioned'
-   },
-   {
-     playbook_id: @initiate.id,
-     name: 'Fighting sticks',
-     harm: 1,
-     tag_list: 'hand, quick, old-fashioned'
-   },
-   {
-     playbook_id: @initiate.id,
-     name: 'Spear',
-     harm: 2,
-     tag_list: 'hand, close, old-fashioned'
-   },
-   {
-     playbook_id: @initiate.id,
-     name: 'Mace',
-     harm: 2,
-     tag_list: 'hand, messy, old-fashioned'
-   },
-   {
-     playbook_id: @initiate.id,
-     name: 'Crossbow',
-     harm: 2,
-     tag_list: 'close, slow, old-fashioned'
-   },
-   {
-     playbook_id: @initiate.id,
-     name: '.38 revolver',
-     harm: 2,
-     tag_list: 'close, reload, loud, modern'
-   },
-   {
-     playbook_id: @initiate.id,
-     name: '9mm',
-     harm: 2,
-     tag_list: 'close, loud, modern'
-   },
-   {
-     playbook_id: @initiate.id,
-     name: 'Sniper rifle',
-     harm: 3,
-     tag_list: 'far, modern'
-   },
-   {
-     playbook_id: @initiate.id,
-     name: 'Magnum',
-     harm: 3,
-     tag_list: 'close, reload, loud,modern'
-   },
-   {
-     playbook_id: @initiate.id,
-     name: 'Shotgun',
-     harm: 3,
-     tag_list: 'close, messy, modern'
-   }].each do |gear|
-    tag_list = gear.delete(:tag_list)
-    g = Gear.find_or_create_by!(gear)
-    g.tag_list = tag_list
-    g.save!
-  end
+[
+  { name: '.22 Revolver', harm: 1, tags: 'close, reload, small' },
+  { name: '.38 Revolver', harm: 2, tags: 'close, reload, loud' },
+  { name: '9mm', harm: 2, tags: 'close, loud' },
+  { name: 'Assault Rifle', harm: 3, tags: 'far, area, loud, reload' },
+  { name: 'Assault Rifle', harm: 3, tags: 'close/far, area' },
+  { name: 'Assault Rifle', harm: 3, tags: 'close, area, loud, reload' },
+  { name: 'Axe', harm: 2, tags: 'hand, messy' },
+  { name: 'Baseball Bat', harm: 1, tags: 'hand' },
+  { name: 'Baseball Bat', harm: 2, tags: 'hand, innocuous, messy' },
+  { name: 'Bicycle', tags: '' },
+  { name: 'Big Axe', harm: 3, tags: 'hand, heavy, slow, messy' },
+  { name: 'Big Knife', harm: 1, tags: 'hand' },
+  { name: 'Big Sword', harm: 3, tags: 'hand, heavy, messy' },
+  { name: 'Blessed Knife', harm: 2, tags: 'hand, holy' },
+  { name: 'Brass Knuckles', harm: 1, tags: 'hand, stealthy' },
+  { name: 'Brass Knuckles', harm: 1, tags: 'hand, quiet, small' },
+  { name: 'Butterfly Knife/folding Knife', harm: 1, tags: 'hand' },
+  { name: 'Chainsaw', harm: 3, tags: 'hand, messy, unreliable, loud, heavy' },
+  { name: 'Classic Car In Terrible Condition', tags: '' },
+  { name: 'Cold Iron Sword', harm: 2, tags: 'hand, messy, iron' },
+  { name: 'Combat Armor', armor: 2, tags: 'heavy' },
+  { name: 'Cricket Bat', harm: 2, tags: 'hand, innocuous, messy' },
+  { name: 'Crossbow', harm: 2, tags: 'close, slow' },
+  { name: 'Divine Armor', armor: 1, tags: 'holy' },
+  { name: 'Enchanted Dagger', harm: 2, tags: 'hand, magic' },
+  { name: 'Fairly New Car In Good Condition', tags: '' },
+  { name: 'Fighting Knife', harm: 2, tags: 'hand, quiet' },
+  { name: 'Fighting Sticks', harm: 1, tags: 'hand, quick' },
+  { name: 'Fire Axe', harm: 3, tags: 'hand, messy' },
+  { name: 'Five Demon Bag', harm: 3, tags: 'close, magic, holy' },
+  { name: 'Flak Vest', armor: 1, tags: 'hidden' },
+  { name: 'Flamethrower', harm: 3, tags: 'close, fire, heavy, volatile' },
+  { name: 'Flaming Sword', harm: 3, tags: 'hand, fire, holy' },
+  { name: 'Garrote', harm: 3, tags: 'intimate' },
+  { name: 'Golf Club', harm: 2, tags: 'hand, innocuous, messy' },
+  { name: 'Grenade Launcher', harm: 4, tags: 'far, area, messy, loud, reload' },
+  { name: 'Grenades', harm: 4, tags: 'close, area, messy, loud' },
+  { name: 'Hand Cannon', harm: 3, tags: 'close, loud' },
+  { name: 'Heirloom Sword', harm: 2, tags: 'hand, messy' },
+  { name: 'Hockey Stick', harm: 2, tags: 'hand, innocuous, messy' },
+  { name: 'Holdout Pistol', harm: 2, tags: 'close, loud, reload' },
+  { name: 'Huge Axe', harm: 3, tags: 'hand, messy, heavy' },
+  { name: 'Huge Sword', harm: 3, tags: 'hand, messy, heavy' },
+  { name: 'Huge Sword', harm: 3, tags: 'hand, heavy' },
+  { name: 'Hunting Rifle', harm: 3, tags: 'far, loud, reload' },
+  { name: 'Hunting Rifle', harm: 2, tags: 'far, loud' },
+  { name: 'Juju Bag', harm: 1, tags: 'far, magic' },
+  { name: 'Mace', harm: 2, tags: 'hand, messy' },
+  { name: 'Magical Dagger', harm: 2, tags: 'hand, magic' },
+  { name: 'Magnum', harm: 3, tags: 'close, reload, loud' },
+  { name: 'Mallet And Wooden Stakes', harm: 3, tags: 'intimate, slow, wooden' },
+  { name: 'Motorcycle', tags: '' },
+  { name: 'Multitool', harm: 1, tags: 'hand, useful, small' },
+  { name: 'Nunchucks', harm: 2, tags: 'hand, area' },
+  { name: 'Old Revolver', harm: 2, tags: 'close, reload, loud' },
+  { name: 'Old-fashioned Armor', armor: 1, tags: 'heavy' },
+  { name: 'Pocket Knife', harm: 1, tags: 'hand, useful, small' },
+  { name: 'Razor Whip', harm: 3, tags: 'hand, area, messy, holy' },
+  { name: 'Ritual Knife', harm: 1, tags: 'hand' },
+  { name: 'Sawn-off Shotgun', harm: 3, tags: 'hand/close, messy, loud, reload' },
+  { name: 'Shotgun', harm: 3, tags: 'close, messy, loud' },
+  { name: 'Shotgun', harm: 3, tags: 'close, messy' },
+  { name: 'Silver Knife', harm: 1, tags: 'hand, silver' },
+  { name: 'Silver Sword', harm: 2, tags: 'hand, messy, silver' },
+  { name: 'Silver Trident', harm: 3, tags: 'hand, silver, holy' },
+  { name: 'Skateboard', tags: '' },
+  { name: 'Sledgehammer', harm: 3, tags: 'hand, messy' },
+  { name: 'Small Handgun', harm: 2, tags: 'close, loud, reload' },
+  { name: 'Sniper Rifle', harm: 3, tags: 'far' },
+  { name: 'Spear', harm: 2, tags: 'hand/close' },
+  { name: 'Specialist Weapon (Other Foe)', harm: 1, tags: "Keeper's Discretion" },
+  { name: 'Specialist Weapons (Chosen Foe)', harm: 4, tags: "Keeper's Discretion" },
+  { name: 'Submachine Gun', harm: 2, tags: 'close, reload, area' },
+  { name: 'Submachine Gun', harm: 3, tags: 'close, area, loud, reload' },
+  { name: 'Sword', harm: 2, tags: 'hand, messy' },
+  { name: 'Throwing Knives', harm: 1, tags: 'close, many' },
+  { name: 'Thunder Hammer', harm: 3, tags: 'hand, stun, holy' },
+  { name: 'Van', tags: '' },
+  { name: "Watchperson's Flashlight", harm: 1, tags: 'hand' },
+  { name: 'Weighted Gloves/brass Knuckles', harm: 1, tags: 'hand' }
+].each do |gear|
+  tag_list = gear.delete(:tag_list)
+  g = Gear.find_or_create_by!(gear)
+  g.tag_list = tag_list
+  g.save!
 end

@@ -14,7 +14,6 @@
 # The class or playbook that the hunter has
 # provides unique abilities to the Hunter
 class Playbook < ApplicationRecord
-  # @available_gear = available_gear
   has_many :improvements
   has_many :playbook_gears
   has_many :gears, through: :playbook_gears
