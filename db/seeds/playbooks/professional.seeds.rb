@@ -243,6 +243,6 @@ after :playbook do
     gear = Gear.find_or_create_by!(
       id: gear_id
     )
-    @crooked.gears << gear
+    @professional.gears << gear
   end
 end
