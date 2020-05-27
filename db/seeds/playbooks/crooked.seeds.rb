@@ -274,12 +274,21 @@ after :playbook do
   #####
   # Gear
   #####
-  [
 
-  ].each do |gear_attrs|
+  # Array of associated gear ID's:
+  # 22 revolver (1-harm close reload small) -1
+  # .38 revolver (2-harm close reload loud) -2
+  # 9mm (2-harm close loud) - 3
+  # Shotgun (3-harm close messy) - 62
+  # Hunting rifle (2-harm far loud) - 46
+  # Big knife (1-harm hand) - 12
+  # Baseball bat (1-harm hand) - 8
+  # Submachinegun (2-harm close reload area) - 73
+  # Assault rifle (3-harm close/far area) - 5
+  [1, 2, 3, 62, 46, 12, 8, 73, 5].each do |gear_id|
     gear = Gear.find_or_create_by!(
-      name: gear_attrs[:name]
+      id: gear_id
     )
-    gear.update!(gear_attrs)
+    @crooked.gears << gear
   end
 end
