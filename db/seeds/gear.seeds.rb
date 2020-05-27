@@ -82,7 +82,7 @@
   { name: "Watchperson's Flashlight", harm: 1, tags: 'hand' },
   { name: 'Weighted Gloves/brass Knuckles', harm: 1, tags: 'hand' }
 ].each do |gear|
-  tag_list = gear.delete(:tag_list)
+  tag_list = gear.delete(:tags)
   g = Gear.find_or_create_by!(gear)
   g.tag_list = tag_list
   g.save!
