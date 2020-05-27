@@ -322,8 +322,7 @@ after :playbook do
     }
   ].each do |gear_attrs|
     gear = Gear.find_or_create_by!(
-      name: gear_attrs[:name],
-      playbook: @crooked
+      name: gear_attrs[:name]
     )
     gear.update!(gear_attrs)
   end

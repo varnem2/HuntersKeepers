@@ -111,10 +111,8 @@ I’ll kill them all. That’s all I have left.'
    name: 'The Searcher',
    description: 'There’s still so much to be discovered and
   explained, even now. Perhaps only one event in a thousand is
-  true weirdness — but I’ll investigate them all to find it.',
-   gears: [1, 16, 14]
+  true weirdness — but I’ll investigate them all to find it.'
  }].each do |playbook|
-  playbook[:gears] = playbook[:gears].map { |id| Gear.find(id) }
   Playbook.find_or_create_by(name: playbook[:name]).update!(playbook)
 end
 
