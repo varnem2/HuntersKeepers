@@ -80,10 +80,10 @@
   { name: 'Thunder Hammer', harm: 3, tags: 'hand, stun, holy' },
   { name: 'Van', tags: '' },
   { name: "Watchperson's Flashlight", harm: 1, tags: 'hand' },
-  { name: 'Weighted Gloves/brass Knuckles', harm: 1, tags: 'hand' }
+  { name: 'Weighted Gloves/Brass Knuckles', harm: 1, tags: 'hand' }
 ].each do |gear|
   tag_list = gear.delete(:tags)
-  g = Gear.find_or_create_by!(gear)
+  g = Gear.create!(gear)
   g.tag_list = tag_list
   g.save!
 end
