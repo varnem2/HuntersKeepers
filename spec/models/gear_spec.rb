@@ -15,10 +15,19 @@
 require 'rails_helper'
 
 RSpec.describe Gear, type: :model do
-  let(:gear) { create :gear }
-  let(:playbook) { create :playbook, gears: [gear] }
+  context 'when parameters are valid' do
+    let(:gear) { create :gear }
 
-  it 'can determine which playbooks the gear belongs to' do
-    expect(gear.playbooks).to include(playbook)
+    it 'creates a new Gear' do
+      expect(gear).to be_valid
+    end
+  end
+
+  context 'when parameters are invalid' do
+    let(:gear) { build :gear, name: '' }
+
+    it 'does not create a new Gear' do
+      expect(gear).not_to be_valid
+    end
   end
 end
