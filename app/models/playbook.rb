@@ -12,7 +12,7 @@
 #
 class Playbook < ApplicationRecord
   has_many :improvements
-  has_many :playbook_gears
+  has_many :playbook_gears, dependent: :destroy
   has_many :gears, through: :playbook_gears
   has_many :moves
   has_many :ratings, dependent: :destroy
