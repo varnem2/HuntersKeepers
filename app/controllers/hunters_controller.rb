@@ -21,7 +21,6 @@ class HuntersController < ApplicationController
   # Available_gear contains all gear available to the Hunter's current playbook
   def show
     @available_improvements = params[:available_improvements]
-    @available_gear = @hunter.playbook.gears
   end
 
   # GET /hunters/new
@@ -35,9 +34,7 @@ class HuntersController < ApplicationController
   #
   # @param id [Integer] id of the Hunter to be edited
   # Available_gear contains all gear available to the Hunter's current playbook
-  def edit
-    @available_gear = @hunter.playbook.gears
-  end
+  def edit; end
 
   # POST /hunters
   # POST /hunters.json
