@@ -213,36 +213,4 @@ after :playbook do
   ].each do |improvement|
     Improvement.find_or_create_by!(improvement)
   end
-
-  #####
-  # Gear
-  #####
-
-  # Array of ID's for The Professional
-  # Armor: You get either a
-  #   flak vest (1-armour hidden) - 31
-  # or
-  #   combat armour (2-armour heavy) - 21
-  # for protection.
-  #   Serious weapons (pick one):
-  # Assault rifle (3-harm far area loud reload) - 4
-  # Grenade launcher (4-harm far area messy loud reload) - 36
-  # Sniper rifle (4-harm far) - 69
-  # Grenades (4-harm close area messy loud) - 37
-  # Submachine gun (3-harm close area loud reload) - 74
-
-  #   Normal weapons (pick two):
-  # .38 revolver (2-harm close reload loud) - 2
-  # 9mm (2-harm close loud) - 3
-  # Hunting rifle (2-harm far loud) - 46
-  # Shotgun (3-harm close messy) - 62
-  # Big knife (1-harm hand) - 12
-
-  # serious or normal can be searched by the description column for each gear
-  [31, 21, 4, 36, 69, 37, 74, 2, 3, 46, 62, 12].each do |gear_id|
-    gear = Gear.find_or_create_by!(
-      id: gear_id
-    )
-    @professional.gears << gear
-  end
 end
