@@ -8,11 +8,11 @@ RSpec.describe PlaybookGear, type: :model do
 
   it 'correctly pulls gear from a playbook' do
     playbook.gears << gear
-    expect(playbook.gears.ids).to include(gear.id)
+    expect(playbook.gear_ids).to include(gear.id)
   end
 
   it 'correctly pulls playbooks from gear' do
     playbook.gears << gear
-    expect(gear.playbooks.ids).to include(playbook.id)
+    expect(gear.playbook_ids).to include(playbook.id)
   end
 end
